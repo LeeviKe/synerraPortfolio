@@ -1,0 +1,11 @@
+pre {
+  background: 27; 
+  padding: 1rem;
+  border-radius: 8px;
+  max-height: 30vh;      
+  overflow-y: auto;  
+}
+
+.layout{
+    max-width: 80wh;
+}

@@ -24,14 +24,13 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
+            "styles": [  "src/styles.css",
+
+  "node_modules/prismjs/themes/prism.css"
             ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "scripts": [  "node_modules/prismjs/prism.js"
+]
+            
           },
           "configurations": {
             "production": {
