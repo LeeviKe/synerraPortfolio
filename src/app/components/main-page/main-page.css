@@ -18,4 +18,5 @@ pre {
   word-wrap: break-word;  /* legacy support */
   overflow-wrap: break-word; /* modern standard */
   white-space: normal;    /* allow wrapping */
+  text-align: center;
 }
