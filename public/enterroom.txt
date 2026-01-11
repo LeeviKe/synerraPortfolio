@@ -1,0 +1,8 @@
+// Enterroom.js
+ if (body.targetUserId) {
+      return await enterRoomWithUserId();
+    } else if (body.targetRoomId) {
+      return await enterRoomwithRoomId();
+    } else {
+      throw new Error('no targetUserId or targetRoomId');
+    }

@@ -1,0 +1,62 @@
+// Auth-call-backs-component.ts
+ngOnInit() {
+    // Extracts the authorization code from the query params
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    if (!code) {
+      console.error('No authorization code found in callback');
+      // Logging out on error
+      this.authService.logout();
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    // Sends the code to backend for JWT data
+    this.http
+      .post<{
+        tokens: any;
+      }>(`${this.baseUrl}/auth/cognito/exchange`, { code })
+      .subscribe({
+        next: (res) => {
+          // Gets JWT and refreshtoken (refreshtoken not used tho)
+          console.log('Received tokens from backend:', res);
+
+          // Base-64-decodes the response
+          const payload = JSON.parse(atob(res.tokens.id_token.split('.')[1]));
+          console.log(payload.email);
+          console.log(payload);
+
+          // JWT to the authStore
+          this.authStore.setToken(res.tokens.id_token);
+
+          // Fetch the user after successful login
+          this.userService.getMe().subscribe({
+            next: (user) => {
+              // Updates the user data for the whole app
+              this.userStore.setUser(user);
+              console.log('Loaded user:', user);
+              this.notificationService.initConnection();
+
+              // Navigates based on the user profile status
+              if (user.Username) {
+                this.router.navigate(['/dashboard']);
+              } else {
+                this.router.navigate(['/profile-creation']);
+              }
+            },
+            error: (err) => {
+              console.error('Error loading user after login:', err);
+              this.router.navigate(['/profile-creation']);
+            },
+          });
+        },
+        error: (err) => {
+          console.error('Failed to exchange code:', err);
+          // Logging out on error
+          this.authService.logout();
+          this.router.navigate(['/login']);
+          return;
+        },
+      });
+    }
+

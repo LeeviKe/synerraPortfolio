@@ -1,0 +1,24 @@
+// Chat.service.ts
+
+// seuraava osana sendMessage-funktiota, lisää lähetetyn viestin suoraan lokaaliin chatLogiin (logMessagesSubject)
+  const current = this.logMessagesSubject.getValue();
+  this.logMessagesSubject.next([...current, message]);
+
+-><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>><-
+
+// Adds a received message to the behavioral subject for showing it for the user in frontend.
+  addLog(msg: {
+    SenderId: string;
+    SenderUsername: string;
+    Content: string;
+    ProfilePicture: string;
+    Timestamp: number;
+  }) {
+    // If the message was sent by the loggedInUser,
+    // it will not be added to the showing chatlog as the message was already added there by sendMessage().
+    if (msg.SenderId !== this.loggedInUser?.UserId) {
+      console.log(msg.SenderId, this.loggedInUser?.UserId);
+      const current = this.logMessagesSubject.getValue();
+      this.logMessagesSubject.next([...current, msg]);
+    }
+  }

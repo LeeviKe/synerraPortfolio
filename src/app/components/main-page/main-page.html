@@ -1,27 +1,137 @@
 <div class="layout">
-<h1>Synerra | etunimi sukunimi</h1>
+  <h1>Synerra | Leevi Kesänen</h1>
 
-<p>Keskityin sovelluksessa tekniseen suunnitteluun ja toteutukseen, pääasiassa frontendin puolella. Lisäksi toimin Scrum-masterin roolissa. kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</p>
+  <p>Keskityin sovelluksessa tekniseen suunnitteluun ja toteutukseen. Suurin fokukseni oli frontendin puolella, mutta
+    tein myös hieman backendiä ja autoin paljon sen suunnittelussa ja ideoinnissa. Lisäksi toimin Scrum-masterin
+    roolissa.
+  </p>
 
-code testingssiä:
+  <p>Päätavoitteinani oli kehittyä ohjelmoinnissa, ryhmätyöskentelyssä sekä Gitin käytössä:
+  </p>
 
+  <ul>
+    <li>
+      <p> Ohjemoinnissa tuli
+        pääasiassa opittua lisää ongelmanratkaisua jatkuvien monimutkaisien ja haastavien ongelmien kautta. Projektia
+        suunnitellessa nimenomaan halusin sovellukseen jotain teknisesti haastavia ominaisuuksia, joissa pääsisin
+        aidosti
+        haastamaan itseäni, ja lopputulos ei pettänyt.</p>
+    </li>
+    <li>
+      <p> Useamman henkilön välisestä projekti- ja ohjelmointityöskentelystä ei
+        ollut aiemmin juurikaan kokemusta, ja tämä prosessi tuli huomattavasti tutummaksi projektin edetessä. Myös
+        Scrum-masterina toimiminen edesauttoi ryhmätyöskentelytaitojen kehittymistä, ja koko projektin ajan pyrin
+        auttamaan
+        muita aina kun oli yhtään suurempia ongelmia.</p>
+    </li>
+    <li>
+      <p>Gitin käyttö oli jonkin asteinen kysymysmerkki ennen syksyä. Yhtenä tärkeimmistä tavoitteista pidinkin Gitin
+        käytössä parantumista ja ylipäätään sen kattavaa ymmärtämistä. Tässä onnistuin loistavasti ja koen nyt
+        kykeneväni käyttämään Gitiä itsevarmasti ja tietäen aina tasan tarkkaan mitä teen. Ymmärrän paljon enemmän sen
+        tarjoamista mahdollisuuksista ja autoin myös muita ryhmäläisiä oppimaan siitä lisää.</p>
+    </li>
+    <li>
+      <p>Tavoitteiden ulkopuolelta opin myös paljon ketterästä kehityksestä ja erityisesti Scrumista. Vastaavasta
+        kehitysmetodista ei ollut aiemmin ollenkaan käytännön kokemusta, ja sen kautta tuli paljon ymmärrystä niin
+        Scrumin
+        hyödyistä kuin haitoistakin.</p>
+    </li>
+  </ul>
 
-<pre ><code class="language-javascript">const x = 1;</code></pre>
-<pre >
-  <code class="language-javascript" [textContent]="codeBlock"></code>
+  <p>Tulevaisuudessa haluan sijoittua työhön, jossa pääsen tekemään aikalailla samoja asioita kuin mitä pääsin tämän
+    projektin aikana hoitamaan. Käytännössä haluan siis työskennellä sovelluksen tekniikan ja logiikan parissa.
+    Opintojakso tuki työelämätaitojenni kehittymistä suuresti ryhmätyöskentelyn ja projektin suuremman skaalan kautta.
+    En osaa nimetä mitään muuta yksittäistä asiaa, jota pitäisi tulevaisuutta varten harjoitella, kuin ihan vaan
+    kokemuksen hankkiminen. Tekemällä oppii parhaiten.
+  </p>
+
+  <p>Suurimpia vahvuuksiani ovat ylivoimaisesti ongelmanratkaisukyky, selkeästi ja loogisesti ajattelu sekä
+    kommunikaatio. Koin näiden olevan vahvuuksiani jo aiemmin, ja projektin parissa työskentely vahvisti oletuksiani
+    suuresti.</p>
+
+  <p>Valitsin alhaalla olevat työt/suoritukset, sillä ne tuottivat itselleni eniten päänvaivaa ja olen ylpeä niiden
+    lopullisesta toiminnasta.</p>
+
+  <h2>Realtime chat</h2>
+  <p> Chatin prototyyppiin otimme paljon mallia backend-kurssin websocket chatista. Varsinaisen sovelluksen kohdalla
+    chattia laajennettaessa ja jaettaessa useisiin eri tiedostoihin ja komponentteihin se kuitenkin muuttui lähes
+    100-prosenttisesti. En ollut koskaan aiemmin suunnitellut/rakentanut mitään vastaavan luokan monimutkaista
+    ominaisuutta, ja olen todella tyytyväinen lopputuloksesta. </p>
+
+  <h3>Chatin aktivointi</h3>
+
+  <p>Chatin alkuperäinen avautuminen tapahtui avaamalla sen halutun käyttäjän kohdalta. Halusin kuitenkin, että chattiin
+    on mahdollista päästä myös menemällä suoraan sen omaan url-osoitteeseen. Tämän saavuttamiseksi chatin avaamiselle
+    tarvitsi kaksi eri tapaa: käyttäjän kautta painaminen vaati chatin avautumisen userId:n avulla, kun taas url:n
+    kautta avaaminen vaati roomId:n.</p>
+
+  <pre>
+  <code class="language-javascript" [textContent]="chatService()"></code>
 </pre>
 
-<p>jaska</p>
-<p>jaska</p>
-<p>jaska</p>
+  <p>StartChatia käytetään ympäri sovellusta vastaavilla tavoilla:</p>
+  <pre>
+  <code class="language-javascript" [textContent]="'this.chatService.startChat([userId]) | this.chatService.startChat(undefined, this.roomId)'"></code>
+</pre>
 
-<p>jaska</p>
-<p>jaska</p>
-<p>jaska</p>
+  <p>Backendin enterroom-handler hakee ja aktivoi tarvittavan chatin avaavan funktion frontendistä saadun userId:n tai
+    roomId:n
+    perusteella.</p>
 
-<p>jaska</p>
-<p>jaska</p>
-<p>jaska</p>
+  <pre>
+  <code class="language-javascript" [textContent]="enterroom()"></code>
+</pre>
 
-<p>jaska</p>
+  <h3>Lähetetyn viestin reaktiivisuus</h3>
+
+  <p>Ennen chatin backend/AWS tehokkuuden parempaa optimointia lähetetyn viestin näkyminen omalla ruudulla oli
+    tuskallisen hidasta. Alunperin kaikki viestit tulivat ruudulle vain websocketin kautta, eli oma viesti näkyi
+    omalla ruudulla vasta, kun se tuli websocket-yhteyden kautta takaisin omalle selaimelle. Tämän käyttäjäkokemuksen
+    parantamiseksi päädyin lisäämän käyttäjän lähettämän viestin suoraan hänen omaan lokaaliin chattiin. Kun oma viesti
+    taas tuli websocketista takaisin, päätyi se vain ohitettavaksi.</p>
+
+  <pre>
+  <code class="language-javascript" [textContent]="viestiReaktiivisuus()"></code>
+</pre>
+
+  <p>Ratkaisu toimii muuten hyvin, mutta se toi mukanaan ilmeisen ongelman virheenkäsittelyssä: Oma lähettämä viesti
+    näkyy omalla ruudulla heti kun se on lähtenyt serverille. Jos jossain matkalla tapahtuu jokin virhe, ei käyttäjä voi
+    siitä tietää. Tähän olisin halunnut tehdä jonkinlaisen tuplacheckin websocketin/DB chatlogin kautta, mutta aika ei
+    riittänyt. </p>
+
+
+
+
+  <h2>Google login</h2>
+  <p>Cogniton ja Googlen välinen toimiminen aiheutti paljon ongelmia ja sekaannusta. Koko toimeenpiteen toimiminen
+    vaatii
+    useita välivaiheita, ja näiden kaikkien yksittäinen selvittely ja ymmärtäminen oli suurin haaste.</p>
+  <img src="googleloginstructure.png" alt="">
+
+  <p>Cogniton kirjautumisprosessin jälkeen käyttäjä ohjautuu sovelluksen call-back-sivulle. Osoitteen yhteydessä se tuo
+    sovellukseen dataa kirjautuneesta käyttäjästä coden mukana. Esimerkki:
+  </p>
+  <pre>
+  <code class="language-javascript" [textContent]="'https://d2lqv34okdzcq4.cloudfront.net/auth/callback?code=098cdd23-0ac7-432f-9c8f-c9492958c4ef'"></code>
+</pre>
+
+  <p>Auth-call-back-component ottaa coden urlista, lähettää sen backendin exchangeCognitoCode-handlerille ja vastauksen
+    perusteella hoitaa käyttäjän kirjautumisprosessin frontendiin.</p>
+
+  <pre>
+  <code class="language-javascript" [textContent]="authCallBacksComponent()"></code>
+</pre>
+
+  <p>exchangeCognitoCode-handleri lähettää frontendistä saamansa coden takaisin cognitolle ja saa vastauksena käyttäjän
+    JWT-tokenin. Tämän jälkeen se päivittää/lisää käyttäjän tiedot dynamoDB:hen ja palauttaa JWT:n frontendiin. Tämä oli
+    haastavin osa Google-kirjautumisessa, sillä käyttäjän tiedot tuli saada tallennettua kaikkialle samassa muodossa
+    alkuperäisen
+    sähköposti/salasana -kirjautumisen kanssa. </p>
+
+  <pre>
+  <code class="language-javascript" [textContent]="exchangeCognitoCode()"></code>
+</pre>
+
+  <h2>Testaus ja julkaisuputki</h2>
+
 </div>
