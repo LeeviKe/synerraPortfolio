@@ -1,26 +1,28 @@
 pre {
-  background: 27;
+  background: #272727; /* FIX: was `27` */
   padding: 1rem;
   border-radius: 8px;
   max-height: 70vh;
-  width: 90vh;
+  max-width: 900px; /* KEPT: explicit max width */
+  width: 100%; /* FIX: responsive on small screens */
+  overflow-x: auto; /* FIX: prevent overflow */
 }
 
 .layout {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1rem; /* FIX: mobile spacing */
 }
 
 .layout p {
-  max-width: 800px; /* limit width */
-  word-wrap: break-word; /* legacy support */
-  overflow-wrap: break-word; /* modern standard */
-  white-space: normal; /* allow wrapping */
+  max-width: 800px;
+  overflow-wrap: break-word;
+  white-space: normal;
   text-align: center;
 }
 
 img {
-  width: 120vh;
+  max-width: 100%; /* FIX: responsive */
   height: auto;
 }
