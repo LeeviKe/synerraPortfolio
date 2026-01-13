@@ -41,8 +41,7 @@
   <p>Tulevaisuudessa haluan sijoittua työhön, jossa pääsen tekemään aikalailla samoja asioita kuin mitä pääsin tämän
     projektin aikana hoitamaan. Käytännössä haluan siis työskennellä sovelluksen tekniikan ja logiikan parissa.
     Opintojakso tuki työelämätaitojenni kehittymistä suuresti ryhmätyöskentelyn ja projektin suuremman skaalan kautta.
-    En osaa nimetä mitään muuta yksittäistä asiaa, jota pitäisi tulevaisuutta varten harjoitella, kuin ihan vaan
-    kokemuksen hankkiminen. Tekemällä oppii parhaiten.
+    Paras kehittämiskohteeni on yksinkertaisesti kokemus.
   </p>
 
   <p>Suurimpia vahvuuksiani ovat ylivoimaisesti ongelmanratkaisukyky, selkeästi ja loogisesti ajattelu sekä
@@ -132,6 +131,52 @@
   <code class="language-javascript" [textContent]="exchangeCognitoCode()"></code>
 </pre>
 
+  <h2>Routet, guardit ja käyttäjän tallennus selaimessa</h2>
+
+  <p>Sovellus koostuu kahdesta layoutista (auth- ja main-layout), joiden alle loput komponentit jakautuvat. Auth-layout
+    sisältää kaikki kirjautumiseen ja profiilin luontiin liittyvät osiot, kun taas main-layout sisältää kaikki muut
+    sovelluksen tarjoamat osiot, joihin on tarkoitus päästä kirjautumisen ja profiilin luonnin jälkeen. </p>
+
+  <p>Kaikki main-layoutin komponentit on suojattu Auth-guardilla, kun taas kaikkiin auth-layoutin komponentteihin on
+    käyttäjällä vapaapääsy, lukuunottamatta profile-creation-komponenttia, johon pääsy on rajoitettu profiilin
+    luontistatuksen perusteella. (Pääsy vain, jos on kirjautunut sovellukseen, muttei ole vielä luonut profiilia.) Tälle
+    statukselle on vielä oma ProfileGuard.</p>
+
+  <pre>
+  <code class="language-javascript" [textContent]="appRoutes()"></code>
+</pre>
+
+  <pre>
+  <code class="language-javascript" [textContent]="profileGuard()"></code>
+</pre>
+
+  <p>Mainittu profile-creation-komponentti aiheutti paljon odotettua enemmän ongelmia pääsynhallinnan kanssa. Käyttäjä
+    tuli pystyä ohjaamaan kirjautumissivujen, profiilinluonnin ja dashboardin välillä sujuvasti riippuen
+    kirjautumistilanteesta. Guardien lisäksi main-layout tarkistaa tämän statuksen, ja uudelleenohjaa käyttäjän
+    lopputulemien mukaan.</p>
+
+  <pre>
+  <code class="language-javascript" [textContent]="mainLayoutComponent()"></code>
+</pre>
+
+  <p>Kirjautuneen käyttäjän JWT-token pidetään sekä Auth.storessa että selaimen local storagessa. Käyttäjän kirjautuessa
+    token päivitetään molempiin, ja esim. refreshatessa Auth.storen signal token hakee localstoragesta tokenin takaisin.
+  </p>
+
+  <pre>
+  <code class="language-javascript" [textContent]="authStore()"></code>
+</pre>
+
+  <pre>
+  <code class="language-javascript" [textContent]="authService()"></code>
+</pre>
+
   <h2>Testaus ja julkaisuputki</h2>
+
+  <p>Testaus oli yhtenä sivurooleistani. Tein simppeleitä yksikkötestejä frontendissä ja backissa. Lisäksi autoin
+    testausympäristöjen pystytyksessä, versionhallinnassa sekä rakensin sovelluksen ja Gitin välille automaattisen
+    julkaisuputken, joka aina omaan branchiin pushatessa ajaa yksikkötestit. Mainiin mergetessä yksikkötestien lisäksi
+    ajetaan myös e2e-testit. Jos kaikki kaikki testit menevät läpi, sekä backend että frontend päivittyvät
+    automaattisesti AWS Cloudfronttiin.</p>
 
 </div>

@@ -15,6 +15,11 @@ export class MainPage implements OnInit {
   chatService = signal('');
   enterroom = signal('');
   viestiReaktiivisuus = signal('');
+  appRoutes = signal('');
+  profileGuard = signal('');
+  mainLayoutComponent = signal('');
+  authStore = signal('');
+  authService = signal('');
 
   constructor(private http: HttpClient) {}
   ngOnInit() {
@@ -44,6 +49,36 @@ export class MainPage implements OnInit {
     });
     this.http.get('/viestiReaktiivisuus.txt', { responseType: 'text' }).subscribe((t) => {
       this.viestiReaktiivisuus.set(t);
+      setTimeout(() => {
+        Prism.highlightAll();
+      }, 0);
+    });
+    this.http.get('/app.routes.txt', { responseType: 'text' }).subscribe((t) => {
+      this.appRoutes.set(t);
+      setTimeout(() => {
+        Prism.highlightAll();
+      }, 0);
+    });
+    this.http.get('/profile.guard.txt', { responseType: 'text' }).subscribe((t) => {
+      this.profileGuard.set(t);
+      setTimeout(() => {
+        Prism.highlightAll();
+      }, 0);
+    });
+    this.http.get('/main-layout.component.txt', { responseType: 'text' }).subscribe((t) => {
+      this.mainLayoutComponent.set(t);
+      setTimeout(() => {
+        Prism.highlightAll();
+      }, 0);
+    });
+    this.http.get('/auth.store.txt', { responseType: 'text' }).subscribe((t) => {
+      this.authStore.set(t);
+      setTimeout(() => {
+        Prism.highlightAll();
+      }, 0);
+    });
+    this.http.get('/auth.service.txt', { responseType: 'text' }).subscribe((t) => {
+      this.authService.set(t);
       setTimeout(() => {
         Prism.highlightAll();
       }, 0);

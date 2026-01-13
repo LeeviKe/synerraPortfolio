@@ -1,0 +1,73 @@
+// App.routes.ts
+
+export const routes: Routes = [
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'auth/callback', component: AuthCallBacksComponent },
+
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: 'dashboard',
+        canActivate: [AuthGuard],
+        component: DashboardPageComponent,
+      },
+      {
+        path: 'dashboard/social',
+        canActivate: [AuthGuard],
+        component: SocialPageComponent,
+      },
+      {
+        path: 'dashboard/social/:id',
+        canActivate: [AuthGuard],
+        component: ChatPageComponent,
+      },
+
+      {
+        path: 'dashboard/find-players',
+        canActivate: [AuthGuard],
+        component: FindPlayersComponent,
+      },
+      {
+        path: 'dashboard/choose-game',
+        canActivate: [AuthGuard],
+        component: ChooseGamePageComponent,
+      },
+      {
+        path: 'dashboard/profile/:userId',
+        canActivate: [AuthGuard],
+        component: ProfilePageComponent,
+      },
+      {
+        path: 'dashboard/settings',
+        canActivate: [AuthGuard],
+        component: SettingsPageComponent,
+      },
+      {
+        path: 'dashboard/settings/profile',
+        canActivate: [AuthGuard],
+        component: ProfileSettingsComponent,
+      },
+      {
+        path: 'dashboard/settings/account',
+        canActivate: [AuthGuard],
+        component: AccountSettingsComponent,
+      },
+    ],
+  },
+  {
+    path: '',
+    component: AuthLayoutComponent,
+    children: [
+      { path: 'login', component: LoginPageComponent, pathMatch: 'full' },
+      { path: 'login/email', component: EmailLoginPageComponent },
+      { path: 'signup', component: SignupPageComponent },
+      {
+        path: 'profile-creation',
+        component: ProfileCreationPageComponent,
+        canActivate: [AuthGuard, ProfileGuard],
+      },
+    ],
+  },
+];
